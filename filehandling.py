@@ -7,7 +7,9 @@
 
 import os
 
-filePath = "Pandas/DataFrame"
+filePath = "Pandas/DataFrame/HandlingMissingData"
+n = 31 # Initial files number
+addFolderLen = 16
 
 def addFolders(n):
     for x in range(1,n):
@@ -15,15 +17,16 @@ def addFolders(n):
             fileopen.close()
 
 if(os.path.isdir(filePath)):
-    folderLen = 14
+    folderLen = n
     if(len(os.listdir(filePath)) == 0):
         addFolders(folderLen)
     else:
-        addFolderLen = 8
         folderLen = len(os.listdir(filePath)) + addFolderLen
         addFolders(folderLen)
 
 else:
     os.mkdir(filePath)
+    addFolders(n)
+
 
 
