@@ -1,4 +1,5 @@
-#
+# Use loc to update the Department column, filling missing values with 
+# the Department that appears most frequently for each City.
 #
 import pandas as pd
 import numpy as np
@@ -18,4 +19,14 @@ data = {
 }
 
 df = pd.DataFrame(data)
+
+# print(df.groupby('City')['Department'].agg(lambda x : pd.Series.mode(x)))
+
+print(df.loc[df['Department'].isna(),'Department'])
+
+df.loc[df['Department'].isna(),'Department'] = df.groupby('City',group_keys=False)['Department'].transform(lambda x : pd.Series.mode(x)[0])
+
+print(df)
+
+
 

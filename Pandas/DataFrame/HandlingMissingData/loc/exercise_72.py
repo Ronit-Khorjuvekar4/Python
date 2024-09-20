@@ -1,4 +1,5 @@
-#
+# Using loc, update the City column to fill missing values 
+# with 'Unknown Location' for employees whose Education is 'PhD'.
 #
 import pandas as pd
 import numpy as np
@@ -18,4 +19,8 @@ data = {
 }
 
 df = pd.DataFrame(data)
+
+df.loc[(df['City'].isna()) & (df['Education'] == 'PhD'),['City']] = 'Unknown Location'
+
+print(df)
 

@@ -1,4 +1,5 @@
-#
+# Use loc to fill missing values in the ExperienceYears column 
+# with 0 for employees whose Salary is less than 60000.
 #
 import pandas as pd
 import numpy as np
@@ -18,4 +19,11 @@ data = {
 }
 
 df = pd.DataFrame(data)
+
+# print(df.loc[df['ExperienceYears'].isna(),['ExperienceYears']])
+
+# print(df.loc[(df['Salary'] < 60000) & (df['ExperienceYears'].isna()),['Salary']])
+
+df.loc[(df['Salary'] < 60000) & (df['ExperienceYears'].isna()),['ExperienceYears']] = 0
+print(df)
 

@@ -1,4 +1,5 @@
-#
+# Using loc, fill missing values in the Name column based on 
+# the Gender: 'Unknown Male' for 'M' and 'Unknown Female' for 'F'.
 #
 import pandas as pd
 import numpy as np
@@ -18,4 +19,12 @@ data = {
 }
 
 df = pd.DataFrame(data)
+
+name = df['Name'].isna()
+
+df.loc[(name) & (df['Gender'] == 'M'),'Name'] = 'Unknown Male'
+df.loc[(name) & (df['Gender'] == 'F'),'Name'] = 'Unknown female'
+
+print(df)
+
 

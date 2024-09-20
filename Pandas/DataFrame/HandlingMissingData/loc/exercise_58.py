@@ -1,4 +1,5 @@
-#
+# Using loc, fill missing values in the Salary column 
+# with the average Salary for employees in the same City.
 #
 import pandas as pd
 import numpy as np
@@ -18,4 +19,14 @@ data = {
 }
 
 df = pd.DataFrame(data)
+
+# print(df.loc[df['Salary'].isna(),['Salary']])
+
+# print(round(df.groupby('City',group_keys=False)['Salary'].mean()))
+
+# df.loc[df['Salary'].isna(),['Salary']] = round(df.groupby('City',group_keys=False)['Salary'].apply(lambda x: x.fillna(x.mean())))
+
+df['Salary'] = df.groupby('City',group_keys=False)['Salary'].apply(lambda x: x.fillna(x.mean()))
+
+print(df)
 

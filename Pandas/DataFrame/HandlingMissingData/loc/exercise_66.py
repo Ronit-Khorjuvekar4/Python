@@ -1,4 +1,5 @@
-#
+# Using loc, update the ExperienceYears column to fill missing values
+# with half of the Age for employees who have no Gender information.
 #
 import pandas as pd
 import numpy as np
@@ -19,3 +20,6 @@ data = {
 
 df = pd.DataFrame(data)
 
+df.loc[df['Gender'].isna() & df['ExperienceYears'].isna(), 'ExperienceYears'] = df['Age'] / 2
+
+print(df)

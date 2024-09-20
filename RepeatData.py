@@ -1,6 +1,6 @@
 import os
 
-filePath = "Pandas/DataFrame/HandlingMissingData"
+filePath = "Pandas/DataFrame/HandlingMissingData/loc"
 ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
 
 len = len(os.listdir(filePath))

@@ -7,9 +7,9 @@
 
 import os
 
-filePath = "Pandas/DataFrame/HandlingMissingData"
+filePath = "Pandas/DataFrame/HandlingMissingData/loc"
 n = 31 # Initial files number
-addFolderLen = 16
+addFolderLen = 31
 
 def addFolders(n):
     for x in range(1,n):

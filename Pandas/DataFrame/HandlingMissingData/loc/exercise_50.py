@@ -1,4 +1,5 @@
-#
+# Use loc to fill missing values in the Age column 
+# with the median age of employees whose Salary is greater than 60000.
 #
 import pandas as pd
 import numpy as np
@@ -18,4 +19,9 @@ data = {
 }
 
 df = pd.DataFrame(data)
+
+median_age = df.loc[df['Salary'] > 60000, 'Age'].median()
+df.loc[df['Age'].isna(), 'Age'] = median_age
+
+print(df)
 

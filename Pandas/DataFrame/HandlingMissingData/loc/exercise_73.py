@@ -1,4 +1,5 @@
-#
+# Use loc to fill missing values in the Gender column with 
+# 'Non-Binary' for employees whose Age is greater than 35.
 #
 import pandas as pd
 import numpy as np
@@ -19,3 +20,6 @@ data = {
 
 df = pd.DataFrame(data)
 
+df.loc[(df['Gender'].isna()) & (df['Age'] >= 35),['Gender']] = 'Non-Binary'
+
+print(df)

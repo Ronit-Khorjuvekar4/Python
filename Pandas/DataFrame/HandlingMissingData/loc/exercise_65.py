@@ -1,4 +1,5 @@
-#
+# Use loc to replace missing values in the City column 
+# with the city of the employee with the closest EmployeeID.
 #
 import pandas as pd
 import numpy as np
@@ -18,4 +19,8 @@ data = {
 }
 
 df = pd.DataFrame(data)
+
+df.loc[df['City'].isna(), 'City'] = df['City'].fillna(method='ffill').fillna(method='bfill')
+
+print(df)
 

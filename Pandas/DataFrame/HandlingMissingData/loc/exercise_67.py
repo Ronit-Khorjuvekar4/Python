@@ -1,4 +1,5 @@
-#
+# Use loc to replace missing values in the Education column 
+# with 'Diploma' for employees who have a missing City.
 #
 import pandas as pd
 import numpy as np
@@ -18,4 +19,8 @@ data = {
 }
 
 df = pd.DataFrame(data)
+
+df.loc[(df['Education'].isna()) & (df['City'].isna()),'Education'] = 'Diploma'
+
+print(df)
 

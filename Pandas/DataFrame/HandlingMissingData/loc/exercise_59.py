@@ -1,4 +1,5 @@
-#
+# Use loc to update the Education column to 'Bachelors' 
+# for all employees whose Age is less than 25 and has missing Education.
 #
 import pandas as pd
 import numpy as np
@@ -14,8 +15,12 @@ data = {
     'ExperienceYears': [5, np.nan, 3, 7, 1, 15, 2, 6, 10, 4, 8, np.nan, 9, 7, np.nan, 5, 12, np.nan, 8, 6, 14, 4, np.nan, 11, 10, 9, np.nan, 6, 5, 13],
     'Gender': ['F', 'M', 'M', 'M', 'F', 'M', np.nan, 'F', 'M', 'F', 'M', 'F', np.nan, 'M', 'F', 'M', 'F', 'M', 'M', 'F', np.nan, 'F', 'M', 'F', 'M', np.nan, 'F', 'M', 'F', 'M'],
     'City': ['New York', 'Los Angeles', np.nan, 'Houston', 'Phoenix', 'Philadelphia', 'San Antonio', 'San Diego', 'Dallas', np.nan, 'Chicago', 'Houston', 'Phoenix', 'San Diego', 'Dallas', 'New York', np.nan, 'Los Angeles', 'Chicago', 'Houston', 'Phoenix', 'Philadelphia', 'San Antonio', np.nan, 'Chicago', 'Houston', 'Phoenix', 'San Diego', 'Dallas', 'New York'],
-    'Education': ['Bachelors', 'Masters', 'Bachelors', 'PhD', 'Masters', 'PhD', np.nan, 'Bachelors', 'Masters', 'PhD', 'Bachelors', 'PhD', 'Bachelors', 'Masters', 'PhD', np.nan, 'Bachelors', 'Masters', 'PhD', 'Bachelors', 'Masters', 'Bachelors', 'PhD', 'Masters', 'PhD', np.nan, 'Bachelors', 'Masters', 'Bachelors', 'PhD']
+    'Education': ['Bachelors', 'Masters', 'Bachelors', 'PhD', np.nan, 'PhD', np.nan, 'Bachelors', 'Masters', 'PhD', 'Bachelors', 'PhD', 'Bachelors', 'Masters', 'PhD', np.nan, 'Bachelors', 'Masters', 'PhD', 'Bachelors', 'Masters', 'Bachelors', 'PhD', 'Masters', 'PhD', np.nan, 'Bachelors', 'Masters', 'Bachelors', 'PhD']
 }
 
 df = pd.DataFrame(data)
+
+df.loc[(df['Age'] < 25) & (df['Education'].isna()),['Education']] = 'Bachelors'
+
+print(df)
 

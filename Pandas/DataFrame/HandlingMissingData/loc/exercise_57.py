@@ -1,4 +1,5 @@
-#
+# Use loc to fill missing values in the Age column based on conditions: 
+# if Gender is 'M', use 30; if Gender is 'F', use 28.
 #
 import pandas as pd
 import numpy as np
@@ -19,3 +20,12 @@ data = {
 
 df = pd.DataFrame(data)
 
+print(df.loc[df['Age'].isna(),['Age','Gender']])
+
+df.loc[df['Age'].isna(),['Age']] = df.apply(lambda x : 30 if x['Gender'] == 'M' else 28 , axis=1)
+
+print(df)
+
+
+# df.loc[(df['Gender'] == 'M') & (df['Age'].isna()), 'Age'] = 30
+# df.loc[(df['Gender'] == 'F') & (df['Age'].isna()), 'Age'] = 28

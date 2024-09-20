@@ -1,4 +1,4 @@
-#
+# **Using loc, fill missing values in the JoiningYear column
 #
 import pandas as pd
 import numpy as np
@@ -18,4 +18,8 @@ data = {
 }
 
 df = pd.DataFrame(data)
+
+df.loc[df['JoiningYear'].isna(),'JoiningYear'] = df.ffill().bfill()
+
+print(df)
 

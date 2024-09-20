@@ -1,4 +1,5 @@
-#
+# Use loc to fill the City column's missing values 
+# with 'Remote' for employees whose Department is missing.
 #
 import pandas as pd
 import numpy as np
@@ -18,4 +19,10 @@ data = {
 }
 
 df = pd.DataFrame(data)
+
+print(df.loc[(df['City'].isna()) & (df['Department'].isna()),['City']])
+
+df.loc[(df['City'].isna()) & (df['Department'].isna()),['City']] = 'Remote'
+
+print(df)
 

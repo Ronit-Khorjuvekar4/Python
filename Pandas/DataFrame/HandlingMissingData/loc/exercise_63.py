@@ -1,4 +1,5 @@
-#
+# Use loc to fill missing values in the Salary column 
+# with the sum of ExperienceYears multiplied by 1000 for each row.
 #
 import pandas as pd
 import numpy as np
@@ -18,4 +19,10 @@ data = {
 }
 
 df = pd.DataFrame(data)
+
+print(df['ExperienceYears'].sum() * 100)
+
+df.loc[df['Salary'].isna(),'Salary']  = df['ExperienceYears'] * 100
+
+print(df)
 

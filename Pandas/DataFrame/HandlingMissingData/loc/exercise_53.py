@@ -1,4 +1,5 @@
-#
+# With loc, update the Department column to fill missing values 
+# with 'General' for employees whose ExperienceYears is less than 5.
 #
 import pandas as pd
 import numpy as np
@@ -18,4 +19,10 @@ data = {
 }
 
 df = pd.DataFrame(data)
+
+print(df.loc[(df['Department'].isna()) & (df['ExperienceYears'] < 5),['Department']])
+
+df.loc[(df['Department'].isna()) & (df['ExperienceYears'] < 5),['Department']] = 'General'
+
+print(df)
 

@@ -1,9 +1,9 @@
-#
+# Using loc, replace missing values in the ExperienceYears column 
+# for employees in the Finance department with the mode of ExperienceYears in that department.
 #
 import pandas as pd
 import numpy as np
 
-# Creating a sample dataset with missing values and various data types
 data = {
     'EmployeeID': range(101, 131),
     'Name': ['Alice', 'Bob', 'Charlie', np.nan, 'Eva', 'Frank', np.nan, 'Hannah', 'Ian', 'Jane', 'Kyle', 'Laura', 'Mona', 'Nate', 'Olivia', np.nan, 'Quinn', 'Ray', np.nan, 'Sophia', 'Tom', 'Uma', 'Victor', 'Wendy', np.nan, 'Yvonne', 'Zack', 'Amber', np.nan, 'Blake'],
@@ -16,6 +16,13 @@ data = {
     'City': ['New York', 'Los Angeles', np.nan, 'Houston', 'Phoenix', 'Philadelphia', 'San Antonio', 'San Diego', 'Dallas', np.nan, 'Chicago', 'Houston', 'Phoenix', 'San Diego', 'Dallas', 'New York', np.nan, 'Los Angeles', 'Chicago', 'Houston', 'Phoenix', 'Philadelphia', 'San Antonio', np.nan, 'Chicago', 'Houston', 'Phoenix', 'San Diego', 'Dallas', 'New York'],
     'Education': ['Bachelors', 'Masters', 'Bachelors', 'PhD', 'Masters', 'PhD', np.nan, 'Bachelors', 'Masters', 'PhD', 'Bachelors', 'PhD', 'Bachelors', 'Masters', 'PhD', np.nan, 'Bachelors', 'Masters', 'PhD', 'Bachelors', 'Masters', 'Bachelors', 'PhD', 'Masters', 'PhD', np.nan, 'Bachelors', 'Masters', 'Bachelors', 'PhD']
 }
-
 df = pd.DataFrame(data)
 
+# print(type(df.loc[df['ExperienceYears'].isna(),['ExperienceYears','Department']]))
+# print(type(df.loc[(df['Department'] == 'Finance'),'ExperienceYears'].mode(dropna=True)))
+# print(type(df.loc[(df['Department'] == 'Finance'),['ExperienceYears']].mode(dropna=True)))
+
+
+df.loc[(df['ExperienceYears'].isna()) & (df['Department'] == 'Finance'),['ExperienceYears']] = df.loc[df['Department'] == 'Finance','ExperienceYears'].mode()[0]
+
+print(df)

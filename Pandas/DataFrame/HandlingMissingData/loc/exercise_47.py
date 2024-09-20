@@ -1,7 +1,9 @@
-#
+# Use loc to update the ExperienceYears column, filling missing values 
+# with the difference between the number of years since JoiningYear.
 #
 import pandas as pd
 import numpy as np
+from datetime import datetime
 
 # Creating a sample dataset with missing values and various data types
 data = {
@@ -18,4 +20,15 @@ data = {
 }
 
 df = pd.DataFrame(data)
+
+expNa = df.loc[df['ExperienceYears'].isna(),'ExperienceYears']
+# print(expNa)
+
+ageYear = datetime.today().year - df.loc[df['ExperienceYears'].isna(),'JoiningYear']
+# print(ageYear)
+
+df.loc[df['ExperienceYears'].isna(),'ExperienceYears'] = ageYear
+
+print(df)
+
 

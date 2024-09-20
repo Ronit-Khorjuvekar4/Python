@@ -1,4 +1,5 @@
-#
+# Using loc, replace missing values in the Name column with 'Unknown' 
+# for employees whose Salary is above the 75th percentile.
 #
 import pandas as pd
 import numpy as np
@@ -18,4 +19,10 @@ data = {
 }
 
 df = pd.DataFrame(data)
+
+print(df['Salary'].sort_values().quantile(0.75))
+
+df.loc[(df['Name'].isna()) & (df['Salary'] > df['Salary'].sort_values().quantile(0.75)),['Name']] = 'Unknown'
+
+print(df)
 

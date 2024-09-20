@@ -1,4 +1,5 @@
-#
+# Using loc, fill missing values in the JoiningYear column 
+# with the minimum JoiningYear in the dataset.
 #
 import pandas as pd
 import numpy as np
@@ -18,4 +19,10 @@ data = {
 }
 
 df = pd.DataFrame(data)
+
+print(df.loc[df['JoiningYear'].isna(),['JoiningYear']])
+
+df.loc[df['JoiningYear'].isna(),['JoiningYear']] = df['JoiningYear'].min()
+
+print(df)
 

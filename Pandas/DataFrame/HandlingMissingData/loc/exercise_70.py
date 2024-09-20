@@ -1,4 +1,5 @@
-#
+# Using loc, fill missing values in the Age column 
+# with the mode of ages for employees with the same Education.
 #
 import pandas as pd
 import numpy as np
@@ -19,3 +20,9 @@ data = {
 
 df = pd.DataFrame(data)
 
+print(df.loc[df['Age'].isna(),'Age'])
+print(df.groupby('Education')['Age'].apply(lambda x : x.mode()[0]))
+
+df.loc[df['Age'].isna(),'Age'] = df.groupby('Education')['Age'].transform(lambda x : x.mode()[0])
+
+print(df)

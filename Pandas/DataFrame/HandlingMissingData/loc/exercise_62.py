@@ -1,4 +1,5 @@
-#
+# Using loc, update the Age column, filling missing values with 
+# the rounded mean Age of employees grouped by Gender.
 #
 import pandas as pd
 import numpy as np
@@ -18,4 +19,10 @@ data = {
 }
 
 df = pd.DataFrame(data)
+
+print(round(df.groupby('Gender',group_keys=False)['Age'].mean()))
+
+df.loc[df['Age'].isna(),'Age'] = round(df.groupby('Gender',group_keys=False)['Age'].apply(lambda x: x.fillna(x.mean())))
+
+print(df)
 

@@ -1,4 +1,5 @@
-#
+# Using loc, fill missing values in the Gender column based on the Name column: 
+# if Name ends with 'a' or 'e', fill with 'F', otherwise fill with 'M'.
 #
 import pandas as pd
 import numpy as np
@@ -18,4 +19,14 @@ data = {
 }
 
 df = pd.DataFrame(data)
+
+namee = df.loc[df['Gender'].isna(),'Name']
+
+df.loc[df['Gender'].isna(),'Gender'] = namee.apply(lambda x: 'F' if isinstance(x, str) and x[-1] in ['a', 'e'] else 'M')
+
+print(df)
+
+
+
+
 
